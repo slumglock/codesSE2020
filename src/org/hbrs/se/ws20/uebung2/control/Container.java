@@ -47,8 +47,6 @@ public class Container {
 
 
 
-      //  if(contains)
-
 
 
     private Member getMember(Integer id) {
@@ -63,16 +61,15 @@ public class Container {
     }
 
     public void dump(){
-        System.out.println("Alle IDs der aktuell gespeicherten Obejkte im Container:");
+        System.out.print("Alle IDs der aktuell gespeicherten Obejkte im Container:\n");
         for(Member x:aList){
-            System.out.println(x.toString());
+            System.out.print(x.toString());
         }
-
     }
 
     public int size(){
 
-        return 0;
+        return aList.size();
 
     }
 

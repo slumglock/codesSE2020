@@ -4,7 +4,7 @@ import org.hbrs.se.ws20.uebung2.Member;
 
 public class defMember implements Member {
 
-    private Integer id = null;
+    private Integer id;
 
     public defMember(Integer id){
         this.id = id;
@@ -18,6 +18,6 @@ public class defMember implements Member {
     @Override
     public String toString(){
 
-        return "Member (ID =" + id + ")";
+        return "Member (ID =" + id + ")\n";
     }
 }
