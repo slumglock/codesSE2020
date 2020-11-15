@@ -63,6 +63,10 @@ public class Container {
     }
 
     public void dump(){
+        System.out.println("Alle IDs der aktuell gespeicherten Obejkte im Container:");
+        for(Member x:aList){
+            System.out.println(x.toString());
+        }
 
     }
 
