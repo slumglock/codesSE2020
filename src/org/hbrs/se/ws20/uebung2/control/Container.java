@@ -25,7 +25,7 @@ public class Container {
     public boolean contains(Member member){
         Integer id = member.getID();
         for(Member x : aList) {
-            if(member.getID() == x.getID()){
+            if(member.getID().equals(x.getID())){
                 return true;
             }
         }
@@ -53,7 +53,7 @@ public class Container {
 
     private Member getMember(Integer id) {
         for(Member x:aList){
-            if(id == x.getID()){
+            if(id.equals(x.getID())){
                 return x;
             }
         }
