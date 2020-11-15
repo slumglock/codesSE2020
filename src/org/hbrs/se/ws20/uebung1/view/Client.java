@@ -1,6 +1,10 @@
 package org.hbrs.se.ws20.uebung1.view;
 
-class Client {
+import org.hbrs.se.ws20.uebung1.control.Translator;
+import org.hbrs.se.ws20.uebung1.control.GermanTranslator;
+import org.hbrs.se.ws20.uebung1.control.factory.Factory;
+
+public class Client {
 
 	/*
 	 * Methode zur Ausgabe einer Zahl auf der Console
@@ -11,8 +15,10 @@ class Client {
 		// aufgerufen werden.
 		// Strenge Implementierung gegen das Interface Translator gewuenscht!
 
-		System.out.println("Das Ergebnis der Berechnung: " +
-				"[das Ergebnis an dieser Stelle]" );
+		Translator t = Factory.createGermanTranslator();
+		String result = t.translateNumber(aNumber);
+
+		System.out.println("Das Ergebnis der Berechnung: " + result + "mit der Eingabe" + aNumber);
 
 	}
 }
