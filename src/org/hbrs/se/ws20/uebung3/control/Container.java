@@ -1,8 +1,9 @@
 package org.hbrs.se.ws20.uebung3.control;
 
 
-import org.hbrs.se.ws20.uebung2.Member;
-import org.hbrs.se.ws20.uebung2.control.ContainerException;
+import org.hbrs.se.ws20.uebung3.control.Member;
+import org.hbrs.se.ws20.uebung3.control.ContainerException;
+import org.hbrs.se.ws20.uebung3.persistence.PersistenceException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +16,37 @@ public class Container {
 
     private Container() {}
 
-    public static Container getInstance(){
+    public static synchronized Container getInstance(){
         if(instance == null) {
             instance = new Container();
         }
         return instance;
     }
+
+    public static void deleteInstance(){
+        instance = null;
+    }
+
+
+    //Ü3 CR2:
+
+    public void store() throws PersistenceException {
+
+    }
+
+    public void load() throws PersistenceException {
+
+    }
+
+    //Uebung 3 CR3:
+
+    public List<Member> getCurrentList(){
+        return aList;
+
+
+    }
+
+
 
     public List<Member> aList = new ArrayList<>();
 
@@ -87,5 +113,7 @@ public class Container {
         return aList.size();
 
     }
+
+
 
 }

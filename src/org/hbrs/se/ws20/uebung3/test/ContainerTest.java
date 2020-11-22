@@ -1,18 +1,19 @@
-package org.hbrs.se.ws20.uebung2.test;
+package org.hbrs.se.ws20.uebung3.test;
 
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.hbrs.se.ws20.uebung2.Member;
-import org.hbrs.se.ws20.uebung2.control.Container;
-import org.hbrs.se.ws20.uebung2.control.ContainerException;
-import org.hbrs.se.ws20.uebung2.control.defMember;
+import org.hbrs.se.ws20.uebung3.control.Member;
+import org.hbrs.se.ws20.uebung3.control.Container;
+import org.hbrs.se.ws20.uebung3.control.ContainerException;
+import org.hbrs.se.ws20.uebung3.control.defMember;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ContainerTest {
     private Member x = null;
@@ -31,7 +32,7 @@ public class ContainerTest {
         y = new defMember(2);
         z = new defMember(3);
         m = new defMember(3);
-        con = new Container();
+        con = Container.getInstance();
 
         System.setOut(new PrintStream(outContent));
     }
@@ -43,7 +44,7 @@ public class ContainerTest {
         y = null;
         z = null;
         m = null;
-        con = null;
+        Container.deleteInstance();
 
         System.setOut(originalOut);
 
@@ -66,7 +67,7 @@ public class ContainerTest {
         assertEquals(con.size(), 1, "Size sollte nach löschen von 2 Membern 1 sein.");
 
 
-        assertEquals(con.deleteMember(4), "Kein Member mit der ID ( 4 ) ist in der Liste enthalten.", "Sollte nicht möglich sein");
+        assertEquals(con.deleteMember(4), "Kein Member mit der ID (4) ist in der Liste enthalten.", "Sollte nicht möglich sein");
 
     }
     @Test
