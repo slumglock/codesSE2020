@@ -2,7 +2,9 @@ package org.hbrs.se.ws20.uebung3.control;
 
 import org.hbrs.se.ws20.uebung3.control.Member;
 
-public class defMember implements Member {
+import java.io.Serializable;
+
+public class defMember implements Member, Serializable {
 
     private Integer id;
 

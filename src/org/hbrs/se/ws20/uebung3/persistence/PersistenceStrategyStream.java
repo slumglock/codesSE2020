@@ -14,10 +14,6 @@ public class PersistenceStrategyStream<Member> implements PersistenceStrategy<Me
     String file = "file.txt.txt";
 
 
-
-
-
-
     @Override
     public void openConnection() throws PersistenceException {
         try {
@@ -26,11 +22,9 @@ public class PersistenceStrategyStream<Member> implements PersistenceStrategy<Me
             fis = new FileInputStream(file);
             ois = new ObjectInputStream(fis);
 
-        }
-        catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -42,8 +36,7 @@ public class PersistenceStrategyStream<Member> implements PersistenceStrategy<Me
             oos.close();
             fis.close();
             ois.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -54,7 +47,7 @@ public class PersistenceStrategyStream<Member> implements PersistenceStrategy<Me
     /**
      * Method for saving a list of Member-objects to a disk (HDD)
      */
-    public void save(List<Member> member) throws PersistenceException  {
+    public void save(List<Member> member) throws PersistenceException {
         openConnection();
 
         try {
@@ -76,28 +69,42 @@ public class PersistenceStrategyStream<Member> implements PersistenceStrategy<Me
      */
     public List<Member> load() throws PersistenceException  {
         // Some Coding hints ;-)
-        // ObjectInputStream ois = null;
-        // FileInputStream fis = null;
-        // List<...> newListe =  null;
+        //ObjectInputStream ois = null;
+        //FileInputStream fis = null;
+        //List<Member> newListe =  null;
         //
         openConnection();
-
+        // Initiating the Stream (can also be moved to method openConnection()... ;-)
+        try {
+            fis = new FileInputStream( " a location to a file" );
+            ois = new ObjectInputStream(fis);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         List<Member> newListe = null;
 
-
+        // Reading and extracting the list (try .. catch ommitted here)
+        Object obj = null;
         try {
-            Object obj = ois.readObject();
+            obj = ois.readObject();
+
             if (obj instanceof List<?>) {
                 newListe = (List) obj;
             }
             return newListe;
-        } catch (IOException | ClassNotFoundException e) {
+        }
+        catch (IOException | ClassNotFoundException e){
             e.printStackTrace();
         }
-
-
-
-        closeConnection();
+        finally {
+            closeConnection();
+        }
         return null;
+
+        // and finally close the streams (guess where this could be...?)
+
+
     }
 }

@@ -5,6 +5,7 @@ import org.hbrs.se.ws20.uebung3.control.Member;
 import org.hbrs.se.ws20.uebung3.control.Container;
 import org.hbrs.se.ws20.uebung3.control.ContainerException;
 import org.hbrs.se.ws20.uebung3.control.defMember;
+import org.hbrs.se.ws20.uebung3.persistence.PersistenceException;
 import org.hbrs.se.ws20.uebung3.view.MemberView;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -91,5 +94,29 @@ public class ContainerTest {
         assertEquals("Alle IDs der aktuell gespeicherten Obejkte im Container:\nMember (ID =1)\nMember (ID =2)\nMember (ID =3)\n", outContent.toString(), "Ausgabe dump Methode ist falsch");
 
     }
+    @Test
+    void testSecondContainer() {
+        Container secondCon = Container.getInstance();
+        assertEquals(secondCon, con, "Es konnte ein zweiter Container erstellt werden.");
+    }
 
+
+    @Test
+    void testStoreAndLoad() {
+        try {
+            con.addMember(x);
+            con.addMember(y);
+            con.addMember(z);
+            assertEquals(3, con.size(), "Size() sollte hier 3 sein!");
+            con.store();
+            List<Member> control = new ArrayList<Member>();
+            control = con.getCurrentList();
+            Container.deleteInstance();
+            Container con2 = Container.getInstance();
+//            con2.load();
+//            assertEquals(control, con2.getCurrentList(),"Bitte funktioniere!");
+        } catch (ContainerException | PersistenceException e) {
+            e.printStackTrace();
+        }
+    }
 }
