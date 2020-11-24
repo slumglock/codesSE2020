@@ -11,7 +11,7 @@ public class PersistenceStrategyStream<Member> implements PersistenceStrategy<Me
     FileInputStream fis = null;
     ObjectInputStream ois = null;
 
-    String file = "file.txt";
+    String file = "file.txt.txt";
 
 
 

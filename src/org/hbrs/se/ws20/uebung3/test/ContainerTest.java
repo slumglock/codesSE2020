@@ -5,6 +5,7 @@ import org.hbrs.se.ws20.uebung3.control.Member;
 import org.hbrs.se.ws20.uebung3.control.Container;
 import org.hbrs.se.ws20.uebung3.control.ContainerException;
 import org.hbrs.se.ws20.uebung3.control.defMember;
+import org.hbrs.se.ws20.uebung3.view.MemberView;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -79,14 +80,14 @@ public class ContainerTest {
     }
 
     @Test
-    // Test von dump
+    // Test von dump aus MemberView
     void testDump() throws ContainerException {
 
         con.addMember(x);
         con.addMember(y);
         con.addMember(z);
 
-        con.dump();
+        MemberView.dump(con.getCurrentList());
         assertEquals("Alle IDs der aktuell gespeicherten Obejkte im Container:\nMember (ID =1)\nMember (ID =2)\nMember (ID =3)\n", outContent.toString(), "Ausgabe dump Methode ist falsch");
 
     }
