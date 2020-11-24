@@ -24,6 +24,7 @@ public class Container {
     }
 
     public static void deleteInstance(){
+
         instance = null;
     }
 
